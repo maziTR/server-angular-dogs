@@ -1,0 +1,20 @@
+<h3 *ngIf="!isEditMode()">Add a new dog </h3>
+<div *ngIf="isEditMode()">
+  <h3>Edit existing dog</h3>
+  <button (click)="cancelEditMode()">Cancel Edit Mode</button> 
+</div>
+<div>
+    <label>Name:
+      <input type="text" [(ngModel)]="dog.name" placeholder="Name" />
+    </label>
+    <label>Weight:
+      <input type="text" [(ngModel)]="dog.weight" placeholder="Weight"  />
+    </label>
+    <label>Birth Date:
+      <input type="text" [(ngModel)]="dog.birthDate" placeholder="Date"  />
+    </label>
+    <button *ngIf="isEditMode()" (click)="updateDog()">Update Dog</button>
+    <button *ngIf="!isEditMode()" (click)="addDog()">Add dog</button>
+</div>
+
+<span *ngIf="dog.weight < 10" [ngClass]="{'warning' : dog.weight < 5, 'message': true }">{{dog.name}} is underweight</span>
